@@ -11,8 +11,14 @@ fi
 
 echo "==> Configuring Hostname and Local Domains..."
 # 1. Set hostname to ModemBrick
-hostnamectl set-hostname ModemBrick
+# Set persistent hostname
 echo "ModemBrick" > /etc/hostname
+# Set the running hostname (kernel) without needing D-Bus/systemd
+hostname ModemBrick 2>/dev/null || echo "Warning: could not set runtime hostname; will apply on reboot."
+# Try systemd path only if the bus happens to exist (harmless either way)
+if [ -S /run/dbus/system_bus_socket ] && command -v hostnamectl >/dev/null 2>&1; then
+  hostnamectl set-hostname ModemBrick 2>/dev/null || true
+fi
 
 # 2. Configure /etc/hosts safely
 if ! grep -q "ModemBrick" /etc/hosts; then
