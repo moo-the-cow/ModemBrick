@@ -7,5 +7,5 @@ curl -sSL "https://raw.githubusercontent.com/moo-the-cow/ModemBrick/refs/heads/m
 fetch update file
 
 ```
-curl -fsSL "https://raw.githubusercontent.com/moo-the-cow/ModemBrick/refs/heads/main/update.sh" -o /opt/ModemBrick/update.sh && chmod +x /opt/ModemBrick/update.sh
+curl -fsSL "https://raw.githubusercontent.com/moo-the-cow/ModemBrick/refs/heads/main/update.sh" -o /opt/ModemBrick/update.sh && chmod +x /opt/ModemBrick/update.sh && sh /opt/ModemBrick/update.sh
 ```
