@@ -2,7 +2,9 @@
 it is advised to enable onboard wifi if it is available for your board (like raspberry pi4)
 
 if you have exited the setup already you can always get back there via
+
 `dietpi-config`
+
 Go To "7 Network Options: Adapters" to make sure to activate it
 <img width="1180" height="469" alt="image" src="https://github.com/user-attachments/assets/14796bd4-53d6-4ec7-b19d-949fd66c6b06" />
 
