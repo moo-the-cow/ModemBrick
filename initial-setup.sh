@@ -176,6 +176,18 @@ echo "==> Creating directories and fixing permissions..."
 # Ensure the working folder exists so service doesn't crash on start if binary isn't dropped yet
 mkdir -p /opt/ModemBrick
 
+echo "==> Downloading third-party license into /root..."
+MOBLINK_LICENSE_URL="https://raw.githubusercontent.com/moo-the-cow/ModemBrick/refs/heads/main/3rd-party-licenses/MOBLINK-RUST.LICENSE"
+MOBLINK_LICENSE_DEST="/root/MOBLINK-RUST.LICENSE"
+
+if curl -fsSL "$MOBLINK_LICENSE_URL" -o "$MOBLINK_LICENSE_DEST"; then
+  echo "    -> Saved: $MOBLINK_LICENSE_DEST"
+else
+  echo "    !! WARNING: Failed to download license from $MOBLINK_LICENSE_URL"
+  echo "    !! Retry manually with:"
+  echo "    !!   curl -fsSL $MOBLINK_LICENSE_URL -o $MOBLINK_LICENSE_DEST"
+fi
+
 echo "==> Downloading moblink-relay into /opt/moblink-rust..."
 MOBLINK_VERSION="v1.1.0"
 MOBLINK_URL="https://github.com/datagutt/moblink-rust/releases/download/${MOBLINK_VERSION}/moblink-relay-aarch64-unknown-linux-musl"
