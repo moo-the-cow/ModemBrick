@@ -45,7 +45,8 @@ apt-get install -y --no-install-recommends \
   openssh-server \
   xz-utils \
   rfkill \
-  libqmi-utils
+  libqmi-utils \
+  usbmuxd libimobiledevice-1.0-6 libimobiledevice-utils usbutils
 
 echo "==> Installing .NET 10 Runtimes to /opt/dotnet..."
 # Create directory beforehand
