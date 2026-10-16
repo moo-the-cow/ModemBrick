@@ -1,3 +1,6 @@
+## REQUIRMENT
+Have Diet-pi installed on your raspberry
+
 ## RECOMMENDATION
 it is advised to enable onboard wifi if it is available for your board (like raspberry pi4)
 
