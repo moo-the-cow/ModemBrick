@@ -183,6 +183,23 @@ else
   echo "Warning: user 'dietpi' does not exist on this environment. Skipping recursive chown."
 fi
 
+echo "==> Downloading moblink-relay into /opt/moblink-rust..."
+MOBLINK_VERSION="v1.1.0"
+MOBLINK_URL="https://github.com/datagutt/moblink-rust/releases/download/${MOBLINK_VERSION}/moblink-relay-aarch64-unknown-linux-musl"
+MOBLINK_DIR="/opt/moblink-rust"
+MOBLINK_BIN="${MOBLINK_DIR}/moblink-relay"
+
+mkdir -p "$MOBLINK_DIR"
+
+if curl -fsSL "$MOBLINK_URL" -o "$MOBLINK_BIN"; then
+  chmod +x "$MOBLINK_BIN"
+  echo "    -> Saved and made executable: $MOBLINK_BIN"
+else
+  echo "    !! WARNING: Failed to download moblink-relay from $MOBLINK_URL"
+  echo "    !! Retry manually with:"
+  echo "    !!   curl -fsSL $MOBLINK_URL -o $MOBLINK_BIN && chmod +x $MOBLINK_BIN"
+fi
+
 echo "===================================================="
 echo " Setup complete! Hostname is now ModemBrick."
 echo " Reconnect your terminal or run: source ~/.bashrc"
