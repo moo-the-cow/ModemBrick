@@ -176,13 +176,6 @@ echo "==> Creating directories and fixing permissions..."
 # Ensure the working folder exists so service doesn't crash on start if binary isn't dropped yet
 mkdir -p /opt/ModemBrick
 
-# Set user ownership of /opt recursively to dietpi:dietpi
-if id "dietpi" &>/dev/null; then
-  chown -R dietpi:dietpi /opt
-else
-  echo "Warning: user 'dietpi' does not exist on this environment. Skipping recursive chown."
-fi
-
 echo "==> Downloading moblink-relay into /opt/moblink-rust..."
 MOBLINK_VERSION="v1.1.0"
 MOBLINK_URL="https://github.com/datagutt/moblink-rust/releases/download/${MOBLINK_VERSION}/moblink-relay-aarch64-unknown-linux-musl"
@@ -198,6 +191,13 @@ else
   echo "    !! WARNING: Failed to download moblink-relay from $MOBLINK_URL"
   echo "    !! Retry manually with:"
   echo "    !!   curl -fsSL $MOBLINK_URL -o $MOBLINK_BIN && chmod +x $MOBLINK_BIN"
+fi
+
+# Set user ownership of /opt recursively to dietpi:dietpi
+if id "dietpi" &>/dev/null; then
+  chown -R dietpi:dietpi /opt
+else
+  echo "Warning: user 'dietpi' does not exist on this environment. Skipping recursive chown."
 fi
 
 echo "===================================================="
